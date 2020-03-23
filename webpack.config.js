@@ -11,17 +11,17 @@ module.exports = {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './public'),
     filename: 'bundle.js'
   },
   module: {
     rules
   },
   resolve: {
-    extensions: ['.ts', '.t sx', '.js']
+    extensions: ['.ts', '.tsx', '.js']
   },
   devServer: {
-    contentBase: './',
+    contentBase: path.resolve(__dirname, './public'),
     port: 3000,
   }
 };
