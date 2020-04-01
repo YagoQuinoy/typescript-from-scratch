@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, Dispatch } from 'react';
+import React, { createContext, useReducer } from 'react';
 
 type Episode = {}
 type Favourite = {}
@@ -30,11 +30,11 @@ export const Context = createContext<IContext>({
 
 function reducer(state: IState, action: IAction) {
   switch(action.type) {
-    case 'FETCH_DATA': 
-      return { ...state, episodes: action.payload };
+  case 'FETCH_DATA': 
+    return { ...state, episodes: action.payload };
 
-    default: 
-      return state;
+  default: 
+    return state;
   }
 }
 

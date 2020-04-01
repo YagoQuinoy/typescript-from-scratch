@@ -61,5 +61,5 @@ export const App = (): JSX.Element => {
         ))}
       </section>
     </>
-  )
-}
+  );
+};

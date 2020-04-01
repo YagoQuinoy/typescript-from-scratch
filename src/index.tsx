@@ -10,6 +10,6 @@ ReactDOM.render(
   <StoreProvider>
     <App />
   </StoreProvider>
-, root);
+  , root);
 
 export default App;
