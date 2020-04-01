@@ -4,19 +4,28 @@ import { Context } from './Store';
 
 const URL = 'https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes';
 
-interface IEpisode {
+interface Episode {
   id: number;
   name: string;
   number: number;
   image: string;
   season: string;
-  
 }
+
+type TVMazeEpisode = {
+  id: number; 
+  name: string; 
+  number: number; 
+  image: { 
+    medium: string; 
+  }; 
+  season: string;
+};
 
 export const App = (): JSX.Element => {
   const { state, dispatch } = useContext(Context);
 
-  const fetchDataAction = async () => {
+  const fetchDataAction = async (): Promise<void> => {
     const data = await fetch(URL);
     const {
       _embedded: {
@@ -26,7 +35,7 @@ export const App = (): JSX.Element => {
 
     return dispatch({
       type: 'FETCH_DATA',
-      payload: episodes.map((episode): IEpisode => {
+      payload: episodes.map((episode: TVMazeEpisode): Episode => {
         const {
           id, name, number, image: { medium: image }, season
         } = episode;
@@ -50,12 +59,14 @@ export const App = (): JSX.Element => {
         <p>Pick your favorite episode!!</p>
       </header>
       <section className="episode-layout">
-        {state.episodes.map((episode: IEpisode): JSX.Element => (
+        {state.episodes.map((episode: Episode): JSX.Element => (
           <section key={episode.id} className="episode-box">
             <img src={episode.image} alt={`Rick & Morty ${episode.name}`} />
             <p>{episode.name}</p>
             <section>
+              <div>
               Season: {episode.season} Number: {episode.number}
+              </div>
             </section>
           </section>
         ))}

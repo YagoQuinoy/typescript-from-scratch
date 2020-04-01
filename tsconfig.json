@@ -8,7 +8,7 @@
     "esModuleInterop": true, // Import non-ES modules as default imports.
     "jsx": "react"
   },
-  "include":  ["src/**/*"],
+  "include":  ["src"],
   "exclude": ["node_modules"],
   
 }
